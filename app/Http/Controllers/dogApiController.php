@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use GuzzleHttp\Client;
 use Inertia\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class dogApiController extends Controller
@@ -37,13 +38,19 @@ class dogApiController extends Controller
             $newFact = new Fact();
             $newFact->Facts = $Facts;
             $newFact->save();
-            return Inertia::render("Facts", [
-                "facts" => $newFact
-            ]);
-            unset($newFact);
+           
 
         }
+        // $allFacts = DB::select('select * from Facts');
+        // dd($allFacts);
 
+        // return Inertia::render("Facts", [
+        //     "facts" => $allFacts
+        // ]);
+        return Inertia::render("Facts", [
+                "facts" => $newFact
+            ]);
+        unset($newFact);
 
        // return Inertia::render('Facts');
 
