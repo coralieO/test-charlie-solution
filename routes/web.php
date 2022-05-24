@@ -33,6 +33,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('/facts',[dogApiController::class, "index"]);
+    Route::get('/facts',[dogApiController::class, "index"]) ->name('fact.index');
+    Route::get('/fact/create', [dogApiController::class, 'create'])->name('fact.create');
+    Route::post('/fact/store', [dogApiController::class, 'store'])->name('fact.store');
 
 });

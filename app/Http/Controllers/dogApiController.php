@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fact;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
 use Inertia\Controller;
@@ -18,16 +19,32 @@ class dogApiController extends Controller
     public function index()
     {
         $facts = new Client();
-        $url = "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all";
+
+
+        $url = "https://www.dogfactsapi.ducnguyen.dev/api/v1/facts/all";
 
 
         $response = $facts->request('GET', $url, [
             'verify'  => false,
         ]);
 
-        $factsdatas = json_decode($response->getBody());
+        $factsdatas = json_decode($response->getBody()->getContents(), true);
+        $factsdatas = $factsdatas["facts"];
 
-        return $factsdatas ;
+        foreach($factsdatas as $Facts){
+
+            $newFact = new Fact();
+            $newFact->Facts = $Facts;
+            $newFact->save();
+            unset($newFact);
+
+        }
+
+
+        return Inertia::render('Facts');
+
+
+
     }
 
     /**
@@ -37,7 +54,7 @@ class dogApiController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('NewFact');
     }
 
     /**
@@ -48,9 +65,28 @@ class dogApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // $post = Fact::create($request->all());
 
+
+        //return response()->json($post);
+       $request->validate([
+            'Facts' => 'required|string',
+        ]);
+
+
+
+        // 3. On enregistre les informations du Post
+        Fact::create([
+            "Facts" => $request->Facts,
+        ]);
+
+        // 4. On retourne vers tous les posts : route("posts.index")
+        return Inertia::render('Facts');
+
+
+
+        // return  $newFact;
+    }
     /**
      * Display the specified resource.
      *
@@ -59,7 +95,11 @@ class dogApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $facts = Fact::findOrFail($id);
+
+            return Inertia::render("Facts", [
+                "facts" => $facts
+            ]);
     }
 
     /**
