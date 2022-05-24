@@ -31,17 +31,21 @@ class dogApiController extends Controller
         $factsdatas = json_decode($response->getBody()->getContents(), true);
         $factsdatas = $factsdatas["facts"];
 
+
         foreach($factsdatas as $Facts){
 
             $newFact = new Fact();
             $newFact->Facts = $Facts;
             $newFact->save();
+            return Inertia::render("Facts", [
+                "facts" => $newFact
+            ]);
             unset($newFact);
 
         }
 
 
-        return Inertia::render('Facts');
+       // return Inertia::render('Facts');
 
 
 
@@ -90,7 +94,7 @@ class dogApiController extends Controller
     {
         $facts = Fact::findOrFail($id);
 
-            return Inertia::render("Facts", [
+            return Inertia::render("FactDetails", [
                 "facts" => $facts
             ]);
     }
@@ -103,7 +107,11 @@ class dogApiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $facts = Fact::findOrFail($id);
+
+        return Inertia::render('UpdateFact', [
+            "facts" => $facts
+        ]);
     }
 
     /**

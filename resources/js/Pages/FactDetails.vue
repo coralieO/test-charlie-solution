@@ -3,7 +3,7 @@
 
     <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                CREATE FACT
+                FACT
             </h2>
     </template>
     <!-- component -->
@@ -43,7 +43,7 @@
                   <p class="text-base text-body-color leading-relaxed mb-7">
                     {{facts.Facts}}
                   </p>
-                   <button @click="destroy(`${tasks.id}`)" class="
+                   <button @click="destroy(`${facts.id}`)" class="
                      inline-block
                      py-2
                      px-7

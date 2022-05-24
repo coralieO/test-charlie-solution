@@ -34,3 +34,5 @@ You can :
 * /fact/{id} (read one fact)
 * /fact/{id}/delete (delete one fact)
 
+## Work time 
+Approximately 10 hours or 12 hours
