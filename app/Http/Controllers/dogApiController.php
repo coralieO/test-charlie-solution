@@ -65,22 +65,15 @@ class dogApiController extends Controller
      */
     public function store(Request $request)
     {
-        // $post = Fact::create($request->all());
 
-
-        //return response()->json($post);
        $request->validate([
-            'Facts' => 'required|string',
+            'Facts' => 'required',
         ]);
 
-
-
-        // 3. On enregistre les informations du Post
         Fact::create([
             "Facts" => $request->Facts,
         ]);
 
-        // 4. On retourne vers tous les posts : route("posts.index")
         return Inertia::render('Facts');
 
 
@@ -122,7 +115,15 @@ class dogApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fact = Fact::findOrFail($id);
+
+        $request->validate([
+            'Facts' => 'required',
+        ]);
+
+        $fact->update($request->only("Facts"));
+
+        return Inertia::render('Facts');
     }
 
     /**
@@ -133,6 +134,8 @@ class dogApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fact = Fact::findOrFail($id);
+        $fact->delete();
+        return Inertia::render('Facts');
     }
 }

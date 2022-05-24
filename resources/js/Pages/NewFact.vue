@@ -19,7 +19,7 @@
                     <div class="mb-6">
                         <label for="Facts" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Fact</label>
                         <textarea id="Facts" v-model="form.Facts" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" ></textarea>
-                    <div v-if="errors.Facts">{{errors.Factss}}</div>
+                    <div v-if="errors.Facts">{{errors.Facts}}</div>
                     <jet-input-error :message="errors.Fact" class="mt-2" />
                     </div>
                     <div class="p-2 flex justify-end rounded-b">
