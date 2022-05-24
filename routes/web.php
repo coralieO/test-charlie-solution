@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dogApiController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,4 +33,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/facts',[dogApiController::class, "index"]) ->name('fact.index');
+    Route::get('/fact/create', [dogApiController::class, 'create'])->name('fact.create');
+    Route::post('/fact/store', [dogApiController::class, 'store'])->name('fact.store');
+    Route::get('/fact/{id}', [dogApiController::class, 'show']) ->name('fact.show');
+    Route::get('/fact/{id}/edit', [dogApiController::class, 'edit']) ->name('fact.edit');
+    Route::put('/fact/{id}/update', [dogApiController::class, 'update']) ->name('fact.update');
+    Route::delete('/fact/{id}/delete', [dogApiController::class, 'destroy']) ->name('fact.delete');
+
 });
