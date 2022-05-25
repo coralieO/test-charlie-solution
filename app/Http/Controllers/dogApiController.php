@@ -38,19 +38,30 @@ class dogApiController extends Controller
             $newFact = new Fact();
             $newFact->Facts = $Facts;
             $newFact->save();
-           
+
 
         }
+
+        $Facts = DB::select('select * from Facts');
+
+        //dd($Facts);
+
+        return Inertia::render('Facts', [
+
+            'facts' => $Facts
+
+         ]);
+
         // $allFacts = DB::select('select * from Facts');
         // dd($allFacts);
 
         // return Inertia::render("Facts", [
         //     "facts" => $allFacts
         // ]);
-        return Inertia::render("Facts", [
-                "facts" => $newFact
-            ]);
-        unset($newFact);
+        // return Inertia::render("Facts", [
+        //         "facts" => $newFact
+        //     ]);
+        // unset($newFact);
 
        // return Inertia::render('Facts');
 

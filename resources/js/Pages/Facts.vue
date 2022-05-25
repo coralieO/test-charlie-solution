@@ -37,14 +37,14 @@
                         hover:text-primary
                         "
                         >
-                     Fact {{facts.id}} about dogs
+                     Fact {{fact.id}} about dogs
                      </a>
                   </h3>
                   <p class="text-base text-body-color leading-relaxed mb-7">
-                    {{facts.Facts}}
+                    {{fact.Facts}}
                   </p>
                   <a
-                     :href="route('fact.show', facts.id)" :active="route().current('fact.show')"
+                     :href="route('fact.show', fact.id)" :active="route().current('fact.show')"
                      class="
                      inline-block
                      py-2
