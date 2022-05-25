@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Fact;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
 use Inertia\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
-class dogApiController extends Controller
+class ApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,27 +46,7 @@ class dogApiController extends Controller
 
         //dd($Facts);
 
-        return Inertia::render('Facts', [
-
-            'facts' => $Facts
-
-         ]);
-
-        // $allFacts = DB::select('select * from Facts');
-        // dd($allFacts);
-
-        // return Inertia::render("Facts", [
-        //     "facts" => $allFacts
-        // ]);
-        // return Inertia::render("Facts", [
-        //         "facts" => $newFact
-        //     ]);
-        // unset($newFact);
-
-       // return Inertia::render('Facts');
-
-
-
+        return response($Facts, 200);
     }
 
     /**
@@ -76,7 +56,7 @@ class dogApiController extends Controller
      */
     public function create()
     {
-        return Inertia::render('NewFact');
+        //
     }
 
     /**
@@ -87,21 +67,17 @@ class dogApiController extends Controller
      */
     public function store(Request $request)
     {
-
-       $request->validate([
+        $request->validate([
             'Facts' => 'required',
         ]);
 
-        Fact::create([
+        $Fact = Fact::create([
             "Facts" => $request->Facts,
         ]);
 
-        return Inertia::render('Facts');
-
-
-
-        // return  $newFact;
+        return response($Fact, 201); ;
     }
+
     /**
      * Display the specified resource.
      *
@@ -112,9 +88,7 @@ class dogApiController extends Controller
     {
         $facts = Fact::findOrFail($id);
 
-            return Inertia::render("FactDetails", [
-                "facts" => $facts
-            ]);
+            return $facts;
     }
 
     /**
@@ -125,11 +99,7 @@ class dogApiController extends Controller
      */
     public function edit($id)
     {
-        $facts = Fact::findOrFail($id);
-
-        return Inertia::render('UpdateFact', [
-            "facts" => $facts
-        ]);
+        //
     }
 
     /**
@@ -149,7 +119,7 @@ class dogApiController extends Controller
 
         $fact->update($request->only("Facts"));
 
-        return Inertia::render('Facts');
+        return response($fact,200);
     }
 
     /**
@@ -162,6 +132,6 @@ class dogApiController extends Controller
     {
         $fact = Fact::findOrFail($id);
         $fact->delete();
-        return Inertia::render('Facts');
+        return response()->json(null, 204);
     }
 }

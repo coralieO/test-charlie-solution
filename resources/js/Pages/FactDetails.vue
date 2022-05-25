@@ -16,7 +16,7 @@
          <div class="w-full md:w-1/2 xl:w-1/3 px-4">
             <div class="bg-white rounded-lg overflow-hidden mb-10">
                <img
-                  src="https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-01.jpg"
+                  src="https://images.unsplash.com/photo-1562877448-d4ee6662c5ee?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hpZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500"
                   alt="image"
                   class="w-full"
                   />
@@ -37,7 +37,7 @@
                         hover:text-primary
                         "
                         >
-                     50+ Best creative website themes & templates
+                   Fact {{facts.id}} about dogs
                      </a>
                   </h3>
                   <p class="text-base text-body-color leading-relaxed mb-7">

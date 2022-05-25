@@ -14,13 +14,13 @@
    <div class="container">
       <div class="flex flex-wrap -mx-4">
          <div class="w-full md:w-1/2 xl:w-1/3 px-4">
-            <div class="bg-white rounded-lg overflow-hidden mb-10">
+            <div class="bg-white rounded-lg overflow-hidden mb-10" v-for="fact in facts" :key="fact.id">
                <img
                   src="https://images.unsplash.com/photo-1437957146754-f6377debe171?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2hpZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500"
                   alt="image"
                   class="w-full"
                   />
-               <div class="p-8 sm:p-9 md:p-7 xl:p-9 text-center" v-for="fact in facts" :key="fact.id" >
+               <div class="p-8 sm:p-9 md:p-7 xl:p-9 text-center"  >
                   <h3>
                      <a
                         href="javascript:void(0)"
@@ -37,14 +37,14 @@
                         hover:text-primary
                         "
                         >
-                     50+ Best creative website themes & templates
+                     Fact {{fact.id}} about dogs
                      </a>
                   </h3>
                   <p class="text-base text-body-color leading-relaxed mb-7">
                     {{fact.Facts}}
                   </p>
                   <a
-                     :href="route('fact.show', facts.id)" :active="route().current('fact.show')"
+                     :href="route('fact.show', fact.id)" :active="route().current('fact.show')"
                      class="
                      inline-block
                      py-2
